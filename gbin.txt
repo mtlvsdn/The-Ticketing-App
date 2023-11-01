@@ -1,0 +1,13 @@
+	EventType type = EventType::Movie;
+	std::string name = "NaN";
+	std::string city = "NaN";
+	std::string venue = "NaN";
+	int day = 1;
+	Months month = Months::January;
+	int year = 2011;
+	std::string Time;
+	char* occupiedSeatsChars = nullptr; // un vector uunidimensional pt toate loc din sala
+	int noOfRows = 0;
+	int noOfColumns = 0;
+	int price = 0;
+	PriceDiscounts discount = PriceDiscounts::Standard;

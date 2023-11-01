@@ -2,101 +2,113 @@
 
 enum class EventType {Movie, Theater, Concert, Match};
 enum class ParticipantType {Standard, Child, Teen, Retired};
+enum class PriceDiscounts {Standard = 0, Child = 50, Teen = 30, Retired = 40};
+enum class Months {January = 1, February, March, April, May, June, July,
+					August, September, October, November, December};
 
 class Event {
 private:
+	//OBJECTS
 	EventType type = EventType::Movie;
 	std::string name = "NaN";
 	std::string city = "NaN";
 	std::string venue = "NaN";
-	int date[3] = {};
-	int time[2] = {};
+	int day = 1;
+	Months month = Months::January;
+	int year = 2011;
+	std::string time = "00:00";
 	char* occupiedSeatsChars = nullptr; // un vector uunidimensional pt toate loc din sala
 	int noOfRows = 0;
 	int noOfColumns = 0;
-	int* prices = nullptr;
+	int price = 0;
+	PriceDiscounts discount = PriceDiscounts::Standard;
+	bool isConcessioned = false;
 
-public:
+	//STATIC ATTRIBUTES
 	static const int MIN_AGE = 5;
 	static const int MIN_NAME_LENGTH = 3;
 	static const int MIN_CITY_LENGTH = 4;
+	static const int MIN_VENUE_LENGTH = 4;
 	static const int MIN_ROWS = 2;
 	static const int MAX_ROWS = 100;
 	static const int MIN_COLUMNS = 5;
 	static const int MAX_COLUMNS = 50;
 
-
+public:
 	//SETTERS
 	void setEventType(EventType type) {
 		this->type = type;
 	}
-
 	void setName(std::string newName) {
 		if (newName.size() < Event::MIN_NAME_LENGTH) {
 			throw std::exception("Name is too short!");
 		}
 		this->name = newName;
 	}
-
 	void setCity(std::string newCity) {
 		if (newCity.size() < Event::MIN_CITY_LENGTH) {
 			throw std::exception("The name of the city is too short!");
 		}
 		this->city = newCity;
 	}
-
-	void setDate(int newDate[3]) {
-		int i;
-		if (newDate[2] >= 2010 && newDate[2] <= 2090)
-		{
-			if (newDate[1] == 1 || newDate[1] == 3 || newDate[1] == 5 || newDate[1] == 7 || newDate[1] == 8 || newDate[1] == 10 || newDate[1] == 12)
-			{
-				if (newDate[0] >= 1 && newDate[0] <= 31)
-				{
-					for (i = 0; i < 3; i++)
-						this->date[i] = newDate[i];
-				}
-
-			}
-			else if (newDate[1] == 4 || newDate[1] == 6 || newDate[1] == 9 || newDate[1] == 11) {
-				if (newDate[0] >= 1 && newDate[0] <= 30) {
-					for (i = 0; i < 3; i++)
-						this->date[i] = newDate[i];
-				}
-
-
-			}
-			else if (newDate[1] == 2)
-			{
-				if (newDate[2] % 4 == 0) {
-					if (newDate[0] >= 1 && newDate[0] <= 29)
-					{
-						for (i = 0; i < 3; i++)
-							this->date[i] = newDate[i];
-					}
-				}
-				else if (newDate[0] >= 1 && newDate[0] <= 28) {
-					for (i = 0; i < 3; i++)
-						this->date[i] = newDate[i];
-				}
-			}
-			else
-				throw std::exception("Invalid date!");
+	void setVenue(std::string newVenue) {
+		if (newVenue.size() < Event::MIN_VENUE_LENGTH) {
+			throw std::exception("The name of the venue is too short!");
 		}
-
 	}
-
-	void setTime(int newTime[2]) {
-		if (newTime[0] >= 0 && newTime[0] <= 23 && newTime[1] >= 0 && newTime[1] <= 59)
-		{
-			this->time[0] = newTime[0];
-			this->time[1] = newTime[1];
-		}
-		else {
+	void setYear(int newYear) {
+		if (newYear < 2010 || newYear > 2030) {
 			throw std::exception("Invalid date!");
 		}
+		this->year = newYear;
 	}
-
+	void setMonth(Months newMonth) {
+		this->month = newMonth;
+	}
+	void setDay(int newDay) {
+		if (newDay < 1 || newDay > 31) {
+			throw std::exception("Invalid date!");
+		}
+		if (this->month == Months::February) {
+			if (newDay == 30 || newDay == 31) {
+				throw std::exception("Invalid date!");
+			}
+			if (this->year % 4 != 0) {
+				if (newDay == 29) {
+					throw std::exception("Invalid date!");
+				}
+			}
+		}
+		if (this->month == Months::April || this->month == Months::June
+			|| this->month == Months::September || this->month == Months::November) {
+			if (newDay == 31) {
+				throw std::exception("Invalid date!");
+			}
+		}
+		this->day = newDay;
+	}
+	void setTime(std::string newTime) {
+		if (newTime.length() != 5) {
+			throw std::exception("Invalid time!");
+		}
+		if (newTime[1] < '0' || newTime[1] > '9') {
+			throw std::exception("Invalid time!");
+		}
+		if (newTime[4] < '0' || newTime[4] > '9') {
+			throw std::exception("Invalid time!");
+		}
+		if (newTime[0] < '0' || newTime[1] > '2') {
+			throw std::exception("Invalid time!");
+		}
+		if (newTime[3] < '0' || newTime[3] > '5') {
+			throw std::exception("Invalid time!");
+		}
+		if ((newTime[0] == 2) && (newTime[1] == 5 || newTime[1] == 6 ||
+			newTime[1] == 7 || newTime[1] == 8 || newTime[1] == 9)) {
+			throw std::exception("Invalid time!");
+		}
+		this->time = newTime;
+	} //.length() nu ia in considerare \0
 	void setNoOfRows(int newNumber) {
 		if (newNumber >= MIN_ROWS && newNumber <= MAX_ROWS) {
 			this->noOfRows = newNumber;
@@ -105,7 +117,6 @@ public:
 			throw std::exception("Invalid Number of Rows at the Venue!");
 		}
 	}
-
 	void setNoOfColumns(int newNumber) {
 		if (newNumber >= MIN_COLUMNS && newNumber <= MAX_COLUMNS) {
 			this->noOfColumns = newNumber;
@@ -115,57 +126,53 @@ public:
 		}
 		
 	}
-
 	void setOccuppiedSeats(int newSeat) {
+		if (newSeat > this->noOfColumns * this->noOfRows || newSeat <= 0) {
+			throw std::exception("Number of seat is invalid!");
+		}
 		this->occupiedSeatsChars[newSeat] = 'O';
 	}
-	
-	void initialiseOccuppiedSeats(int noRows, int noColumns) {
-		//delete[] this->occupiedSeatsNumber;
-		delete[] this->occupiedSeatsChars;
-		//this->occupiedSeatsNumber = new int[noRows * noColumns];
-		this->occupiedSeatsChars = new char[noRows * noColumns];
-
-		for (int i = 1; i <= noRows * noColumns; i++) {
-			//this->occupiedSeatsNumber[i] = i;
-			this->occupiedSeatsChars[i] = 'F';
+	void setPrice(int newPrice) {
+		if (newPrice <= 0) {
+			throw std::exception("Invalid price!");
 		}
+		this->price = newPrice;
 	}
-
-	void setPrices(int* newArray, int noOfTypes) {
-		newArray = new int[noOfTypes];
-		
-		for (int i = 0; i < noOfTypes; i++) {
-			//citire din fisier a preturilor;
-		}
+	void setDiscount(PriceDiscounts newDiscount) {
+		this->discount = newDiscount;
+	}
+	void IsConcessioned() {
+		this->isConcessioned = true;
 	}
 
 	//GETTERS
-
 	std::string getName() {
 		return this->name;
 	}
-
 	std::string getCity() {
 		return this->city;
 	}
-
-	int getDate() {
-		return this->date[3];
+	std::string getVenue() {
+		return this->venue;
 	}
-
-	int getTime() {
-		return this->time[2];
+	int getYear() {
+		return this->year;
 	}
-
+	Months getMonth() {
+		return this->month;
+	}
+	int getDay() {
+		return this->day;
+	}
+	std::string getTime() {
+		return this->time;
+	}
 	int getNoOfRows() {
 		return this->noOfRows;
 	}
-
 	int getNoOfColumns() {
 		return this->noOfColumns;
 	}
-
 	char* getOccupiedSeats() {
 		char* newArray = new char[this->noOfRows * this->noOfColumns];
 		for (int i = 1; i <= this->noOfRows * this->noOfColumns; i++) {
@@ -174,47 +181,85 @@ public:
 
 		return newArray;
 	}
-
-	int* getPrices() {
-		int* newArray = new int[this->noOfRows / 2];
-		for (int i = 0; i < *newArray; i++) {
-			newArray[i] = this->prices[i];
-		}
-
-		return newArray;
+	int getPrice() {
+		return this->price;
+	}
+	PriceDiscounts getDiscount() {
+		return this->discount;
+	}
+	bool hasConcession() {
+		return this->isConcessioned;
 	}
 
-	//Event {
+	//OTHER METHODS
+	void initialiseOccuppiedSeats(int noRows, int noColumns) {
+		delete[] this->occupiedSeatsChars;
+		this->occupiedSeatsChars = new char[noRows * noColumns];
 
-	//}
+		for (int i = 1; i <= noRows * noColumns; i++) {
+			this->occupiedSeatsChars[i] = 'F';
+		}
+	}
 
-	/*Event (EventType type, std::string name, std::string city, std::string venue, int date[3], int time[2]) {
-		setEventType();
-		setName();
-		setCity();
-		setVenue();
-		setDate();
-		setTime();
+	//CONSTRUCTORS
+	Event() {
+		this->setEventType(EventType::Movie);
+		this->setName("Home Alone");
+		this->setCity("Bucharest");
+		this->setVenue("Afi Palace Cotroceni");
+		this->setYear(2011);
+		this->setMonth(Months::January);
+		this->setDay(1);
+		this->setTime("22:00");
+		this->setNoOfRows(4);
+		this->setNoOfColumns(5);
+		this->setPrice(20);
+		this->setDiscount(PriceDiscounts::Standard);
+	}
 
-	}*/
+	Event (std::string name, std::string city) {
+		setName(name);
+		setCity(city);
+	}
+
+	Event (EventType type, std::string name, std::string city,
+		int year, Months month, int day) {
+		setEventType(type);
+		setName(name);
+		setCity(city);
+		setVenue(venue);
+		setYear(year);
+		setMonth(month);
+		setDay(day);
+	}
 	
 };
 
 class Participant {
 private:
-	std::string name = "NaN";
-	char dateOfBirth[11] = {};
+	std::string name = "NaN";;
+	int age = 0;
 	int selectedSeat = 0;
-	bool isConcessioned = false;
 
 public:
+
+	static const int MIN_AGE = 3;
+
 	//SETTERS
 	void setName(std::string newName) {
 		this->name = newName;
 	}
 
 	void setDateOfBirth(char newDate[11]) {
-		//char newArray[11];
+		////char newArray[11];
+
+		//// Get the current time as a time_t object
+		//std::time_t currentTime = std::time(nullptr);
+		//// Convert the time to a tm struct
+		//std::tm* timeInfo = std::localtime(&currentTime);
+		//// Extract the current year
+		//int currentYear = timeInfo->tm_year + 1900;
+		//if (currentYear - newDate[])
 		for (int i = 0; i < 11; i++) {
 			this->dateOfBirth[i] = newDate[i];
 		}
@@ -253,10 +298,10 @@ public:
 class MyTickets {
 private:
 	std::string nameOfTheEvent = "NaN";
+	int selectedSeat = 0;
+	int price = 0;
+	int* ticketID = nullptr;
 	bool eventHasPassed = false;
-	int* selectedSeats = nullptr;
-	int totalPrice = 0;
-	//int numberOfParticipants = 0;
 	ParticipantType type = ParticipantType::Standard;
 
 public:

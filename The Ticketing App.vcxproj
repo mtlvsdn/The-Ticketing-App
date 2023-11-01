@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="concertEvents.txt" />
+    <Text Include="gbin.txt" />
     <Text Include="matchEvents.txt" />
     <Text Include="movieEvents.txt" />
     <Text Include="musicalEvents.txt" />

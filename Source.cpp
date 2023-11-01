@@ -17,39 +17,39 @@ void mainMenu() {
 	std::cout << std::endl << std::endl << "\t-> ";
 }
 
-std::string typeNameOfMovie() {
-	std::string nameOfEvent;
-	system("cls");
-	std::cout << std::endl << "\t\t\t\t\tTicketing App";
-	std::cout << std::endl << std::endl << "\tType in the name of the movie you wish to attend: ";
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::getline(std::cin, nameOfEvent);
-	return nameOfEvent;
-}
-std::string typeNameOfMusical() {
-	std::string nameOfEvent;
-	system("cls");
-	std::cout << std::endl << "\t\t\t\t\tTicketing App";
-	std::cout << std::endl << std::endl << "\tType in the name of the musical you wish to attend: ";
-	std::cin >> nameOfEvent;
-	return nameOfEvent;
-}
-std::string typeNameOfConcert() {
-	std::string nameOfEvent;
-	system("cls");
-	std::cout << std::endl << "\t\t\t\t\tTicketing App";
-	std::cout << std::endl << std::endl << "\tType in the name of the concert you wish to attend: ";
-	std::cin >> nameOfEvent;
-	return nameOfEvent;
-}
-std::string typeNameOfMatch() {
-	std::string nameOfEvent;
-	system("cls");
-	std::cout << std::endl << "\t\t\t\t\tTicketing App";
-	std::cout << std::endl << std::endl << "\tType in the name of the match you wish to attend: ";
-	std::cin >> nameOfEvent;
-	return nameOfEvent;
-}
+//std::string typeNameOfMovie() {
+//	std::string nameOfEvent;
+//	system("cls");
+//	std::cout << std::endl << "\t\t\t\t\tTicketing App";
+//	std::cout << std::endl << std::endl << "\tType in the name of the movie you wish to attend: ";
+//	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+//	std::getline(std::cin, nameOfEvent);
+//	return nameOfEvent;
+//}
+//std::string typeNameOfMusical() {
+//	std::string nameOfEvent;
+//	system("cls");
+//	std::cout << std::endl << "\t\t\t\t\tTicketing App";
+//	std::cout << std::endl << std::endl << "\tType in the name of the musical you wish to attend: ";
+//	std::cin >> nameOfEvent;
+//	return nameOfEvent;
+//}
+//std::string typeNameOfConcert() {
+//	std::string nameOfEvent;
+//	system("cls");
+//	std::cout << std::endl << "\t\t\t\t\tTicketing App";
+//	std::cout << std::endl << std::endl << "\tType in the name of the concert you wish to attend: ";
+//	std::cin >> nameOfEvent;
+//	return nameOfEvent;
+//}
+//std::string typeNameOfMatch() {
+//	std::string nameOfEvent;
+//	system("cls");
+//	std::cout << std::endl << "\t\t\t\t\tTicketing App";
+//	std::cout << std::endl << std::endl << "\tType in the name of the match you wish to attend: ";
+//	std::cin >> nameOfEvent;
+//	return nameOfEvent;
+//}
 
 void listOfMovies(std::string nameOfEvent) {
 	system("cls");
