@@ -19,4 +19,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="header.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="movieEvents.txt" />
+    <Text Include="musicalEvents.txt" />
+    <Text Include="concertEvents.txt" />
+    <Text Include="matchEvents.txt" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,90 @@
+Coldplay Live in Concert, London, Wembley Stadium, 20/08/2023, 18:00
+Adele's World Tour, New York, Madison Square Garden, 21/08/2023, 19:30
+Ed Sheeran: The Melody Tour, Los Angeles, Hollywood Bowl, 22/08/2023, 20:15
+Taylor Swift's Reputation Stadium Tour, Nashville, Nissan Stadium, 23/08/2023, 21:00
+The Rolling Stones: No Filter Tour, Paris, Stade de France, 24/08/2023, 19:45
+Beyoncé and Jay-Z On the Run Tour, Miami, Hard Rock Stadium, 25/08/2023, 18:30
+Elton John Farewell Yellow Brick Road Tour, Las Vegas, T-Mobile Arena, 26/08/2023, 19:00
+Shawn Mendes: Wonder World Tour, Toronto, Rogers Centre, 27/08/2023, 18:45
+Billie Eilish Happier Than Ever Tour, Berlin, Mercedes-Benz Arena, 28/08/2023, 19:30
+Katy Perry: Smile Tour, Sydney, ANZ Stadium, 29/08/2023, 20:00
+Harry Styles Love on Tour, London, The O2 Arena, 30/08/2023, 18:15
+Dua Lipa Future Nostalgia Tour, Amsterdam, Ziggo Dome, 31/08/2023, 19:00
+Rihanna Anti World Tour, Paris, AccorHotels Arena, 01/09/2023, 20:30
+Bruno Mars 24K Magic World Tour, Los Angeles, The Forum, 02/09/2023, 18:45
+Ariana Grande Sweetener World Tour, New York, Barclays Center, 03/09/2023, 19:15
+Justin Bieber Justice World Tour, Toronto, Scotiabank Arena, 04/09/2023, 20:00
+The Weeknd After Hours Tour, Las Vegas, Allegiant Stadium, 05/09/2023, 19:30
+Alicia Keys: The World Tour, Miami, AmericanAirlines Arena, 06/09/2023, 20:15
+John Legend Darkness and Light Tour, London, The SSE Arena, Wembley, 07/09/2023, 19:45
+Lady Gaga Chromatica Ball Tour, Rome, Stadio Olimpico, 08/09/2023, 20:30
+Adele Live in Concert, Sydney, ANZ Stadium, 09/09/2023, 18:30
+Ed Sheeran: The Melody Tour, Toronto, Rogers Centre, 10/09/2023, 19:00
+Taylor Swift's Reputation Stadium Tour, Los Angeles, SoFi Stadium, 11/09/2023, 20:00
+The Rolling Stones: No Filter Tour, Paris, U Arena, 12/09/2023, 19:15
+Beyoncé and Jay-Z On the Run Tour, London, The O2 Arena, 13/09/2023, 20:30
+Elton John Farewell Yellow Brick Road Tour, New York, Madison Square Garden, 14/09/2023, 19:45
+Shawn Mendes: Wonder World Tour, Los Angeles, Staples Center, 15/09/2023, 20:15
+Billie Eilish Happier Than Ever Tour, Paris, AccorHotels Arena, 16/09/2023, 19:30
+Katy Perry: Smile Tour, Sydney, Qudos Bank Arena, 17/09/2023, 20:00
+Harry Styles Love on Tour, Berlin, Mercedes-Benz Arena, 18/09/2023, 18:45
+Dua Lipa Future Nostalgia Tour, Los Angeles, Hollywood Bowl, 19/09/2023, 20:15
+Rihanna Anti World Tour, New York, Barclays Center, 20/09/2023, 18:30
+Bruno Mars 24K Magic World Tour, London, The O2 Arena, 21/09/2023, 19:00
+Ariana Grande Sweetener World Tour, Paris, AccorHotels Arena, 22/09/2023, 19:45
+Justin Bieber Justice World Tour, Berlin, Mercedes-Benz Arena, 23/09/2023, 20:30
+The Weeknd After Hours Tour, Toronto, Scotiabank Arena, 24/09/2023, 18:45
+Alicia Keys: The World Tour, Los Angeles, The Forum, 25/09/2023, 19:30
+John Legend Darkness and Light Tour, New York, Madison Square Garden, 26/09/2023, 20:00
+Lady Gaga Chromatica Ball Tour, Sydney, ANZ Stadium, 27/09/2023, 20:15
+Adele Live in Concert, London, Wembley Stadium, 28/09/2023, 19:00
+Ed Sheeran: The Melody Tour, Los Angeles, Hollywood Bowl, 29/09/2023, 18:30
+Taylor Swift's Reputation Stadium Tour, New York, Madison Square Garden, 30/09/2023, 19:15
+The Rolling Stones: No Filter Tour, London, The O2 Arena, 01/10/2023, 20:30
+Beyoncé and Jay-Z On the Run Tour, Paris, Stade de France, 02/10/2023, 20:45
+Elton John Farewell Yellow Brick Road Tour, Los Angeles, Dodger Stadium, 03/10/2023, 19:45
+Shawn Mendes: Wonder World Tour, Toronto, Rogers Centre, 04/10/2023, 19:30
+Billie Eilish Happier Than Ever Tour, Berlin, Mercedes-Benz Arena, 05/10/2023, 20:15
+Katy Perry: Smile Tour, London, Wembley Stadium, 06/10/2023, 20:00
+Harry Styles Love on Tour, Paris, AccorHotels Arena, 07/10/2023, 18:45
+Dua Lipa Future Nostalgia Tour, New York, Barclays Center, 08/10/2023, 19:00
+Rihanna Anti World Tour, Los Angeles, SoFi Stadium, 09/10/2023, 19:15
+Bruno Mars 24K Magic World Tour, Paris, U Arena, 10/10/2023, 20:30
+Ariana Grande Sweetener World Tour, London, The O2 Arena, 11/10/2023, 20:45
+Justin Bieber Justice World Tour, Los Angeles, Hollywood Bowl, 12/10/2023, 19:45
+The Weeknd After Hours Tour, New York, Madison Square Garden, 13/10/2023, 20:15
+Alicia Keys: The World Tour, Berlin, Mercedes-Benz Arena, 14/10/2023, 19:30
+John Legend Darkness and Light Tour, Toronto, Rogers Centre, 15/10/2023, 20:00
+Lady Gaga Chromatica Ball Tour, Paris, Stade de France, 16/10/2023, 19:45
+Adele Live in Concert, London, Wembley Stadium, 17/10/2023, 20:30
+Ed Sheeran: The Melody Tour, New York, Barclays Center, 18/10/2023, 18:45
+Taylor Swift's Reputation Stadium Tour, Los Angeles, SoFi Stadium, 19/10/2023, 19:00
+The Rolling Stones: No Filter Tour, New York, Madison Square Garden, 20/10/2023, 19:30
+Beyoncé and Jay-Z On the Run Tour, London, Wembley Stadium, 21/10/2023, 20:15
+Elton John Farewell Yellow Brick Road Tour, Paris, AccorHotels Arena, 22/10/2023, 20:30
+Shawn Mendes: Wonder World Tour, Los Angeles, The Forum, 23/10/2023, 19:45
+Billie Eilish Happier Than Ever Tour, New York, Barclays Center, 24/10/2023, 20:00
+Katy Perry: Smile Tour, London, The O2 Arena, 25/10/2023, 19:15
+Harry Styles Love on Tour, Berlin, Mercedes-Benz Arena, 26/10/2023, 18:30
+Dua Lipa Future Nostalgia Tour, Paris, U Arena, 27/10/2023, 20:45
+Rihanna Anti World Tour, Los Angeles, Dodger Stadium, 28/10/2023, 19:30
+Bruno Mars 24K Magic World Tour, New York, Barclays Center, 29/10/2023, 19:45
+Ariana Grande Sweetener World Tour, London, Wembley Stadium, 30/10/2023, 20:30
+Justin Bieber Justice World Tour, Paris, Stade de France, 31/10/2023, 18:45
+The Weeknd After Hours Tour, Los Angeles, Hollywood Bowl, 01/11/2023, 19:15
+Alicia Keys: The World Tour, New York, Madison Square Garden, 02/11/2023, 20:00
+John Legend Darkness and Light Tour, London, The O2 Arena, 03/11/2023, 20:15
+Lady Gaga Chromatica Ball Tour, Paris, AccorHotels Arena, 04/11/2023, 19:30
+Adele Live in Concert, Los Angeles, The Forum, 05/11/2023, 18:30
+Ed Sheeran: The Melody Tour, New York, Madison Square Garden, 06/11/2023, 19:00
+Taylor Swift's Reputation Stadium Tour, London, Wembley Stadium, 07/11/2023, 19:45
+The Rolling Stones: No Filter Tour, Paris, U Arena, 08/11/2023, 20:00
+Beyoncé and Jay-Z On the Run Tour, Los Angeles, SoFi Stadium, 09/11/2023, 20:15
+Elton John Farewell Yellow Brick Road Tour, New York, Barclays Center, 10/11/2023, 19:30
+Shawn Mendes: Wonder World Tour, London, The O2 Arena, 11/11/2023, 20:45
+Billie Eilish Happier Than Ever Tour, Paris, Stade de France, 12/11/2023, 18:45
+Katy Perry: Smile Tour, Los Angeles, Hollywood Bowl, 13/11/2023, 19:00
+Harry Styles Love on Tour, New York, Madison Square Garden, 14/11/2023, 19:15
+Dua Lipa Future Nostalgia Tour, London, Wembley Stadium, 15/11/2023, 20:30
+Rihanna Anti World Tour, Paris, AccorHotels Arena, 16/11/2023, 19:45
+Bruno Mars 24K Magic World Tour, Los Angeles, Dodger Stadium, 17/11/2023, 20:00
