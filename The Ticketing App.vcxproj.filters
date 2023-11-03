@@ -30,5 +30,7 @@
     <Text Include="concertEvents.txt" />
     <Text Include="matchEvents.txt" />
     <Text Include="gbin.txt" />
+    <Text Include="myTickets.txt" />
+    <Text Include="pdfTicket.txt" />
   </ItemGroup>
 </Project>

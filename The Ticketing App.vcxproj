@@ -138,6 +138,8 @@
     <Text Include="matchEvents.txt" />
     <Text Include="movieEvents.txt" />
     <Text Include="musicalEvents.txt" />
+    <Text Include="myTickets.txt" />
+    <Text Include="pdfTicket.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

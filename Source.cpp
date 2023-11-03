@@ -1,8 +1,12 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "header.h"
 #include <conio.h>
 #include <fstream>
 #include <string>
+#include <random>
+#include <chrono>
+#include <ctime>
 
 void mainMenu() {
 	system("cls");

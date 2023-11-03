@@ -24,6 +24,7 @@ private:
 	PriceDiscounts discount = PriceDiscounts::Standard;
 	bool isConcessioned = false;
 
+public:
 	//STATIC ATTRIBUTES
 	static const int MIN_AGE = 5;
 	static const int MIN_NAME_LENGTH = 3;
@@ -34,7 +35,6 @@ private:
 	static const int MIN_COLUMNS = 5;
 	static const int MAX_COLUMNS = 50;
 
-public:
 	//SETTERS
 	void setEventType(EventType type) {
 		this->type = type;
@@ -146,6 +146,9 @@ public:
 	}
 
 	//GETTERS
+	EventType getType() {
+		return this->type;
+	}
 	std::string getName() {
 		return this->name;
 	}
@@ -200,6 +203,9 @@ public:
 			this->occupiedSeatsChars[i] = 'F';
 		}
 	}
+	void searchAnEventAndDisplayOnConsole() {
+
+	}
 
 	//CONSTRUCTORS
 	Event() {
@@ -216,12 +222,10 @@ public:
 		this->setPrice(20);
 		this->setDiscount(PriceDiscounts::Standard);
 	}
-
 	Event (std::string name, std::string city) {
 		setName(name);
 		setCity(city);
 	}
-
 	Event (EventType type, std::string name, std::string city,
 		int year, Months month, int day) {
 		setEventType(type);
@@ -233,6 +237,10 @@ public:
 		setDay(day);
 	}
 	
+	//DESTRUCTOR
+	~Event() {
+		delete[] this->occupiedSeatsChars;
+	}
 };
 
 class Participant {
@@ -244,54 +252,62 @@ private:
 public:
 
 	static const int MIN_AGE = 3;
+	static const int MIN_LENGTH_NAME = 3;
 
 	//SETTERS
 	void setName(std::string newName) {
+		if (newName.length() < MIN_LENGTH_NAME) {
+			throw std::exception("Name is too short!");
+		}
 		this->name = newName;
 	}
-
-	void setDateOfBirth(char newDate[11]) {
-		////char newArray[11];
-
-		//// Get the current time as a time_t object
-		//std::time_t currentTime = std::time(nullptr);
-		//// Convert the time to a tm struct
-		//std::tm* timeInfo = std::localtime(&currentTime);
-		//// Extract the current year
-		//int currentYear = timeInfo->tm_year + 1900;
-		//if (currentYear - newDate[])
-		for (int i = 0; i < 11; i++) {
-			this->dateOfBirth[i] = newDate[i];
+	void setAge(int newAge) {
+		if (newAge < MIN_AGE) {
+			throw std::exception("Age is too small!");
 		}
+		this->age = newAge;
 	}
-
-	void setSeats(int newSeat) {
+	void setSeat(int newSeat) {
+		if (newSeat <= 0) {
+			throw std::exception("Seat number is invalid");
+		}
 		this->selectedSeat = newSeat;
-	}
-
-	void setIsConcessioned() {
-		this->isConcessioned = true;
-	}
-
-	void setIsNotConcessioned() {
-		this->isConcessioned = false;
 	}
 
 	//GETTERS
 	std::string getName() {
 		return this->name;
 	}
-
-	char getDateOfBirth() {
-		return this->dateOfBirth[11];
+	int getAge() {
+		return this->age;
 	}
-
 	int getSeat() {
 		return this->selectedSeat;
 	}
 
-	bool hasConcession() {
-		return this->isConcessioned;
+	//OTHER METHODS
+	void tellIfSeatIsAlreadyOccupied() {
+
+	}
+	void informBuyerToDownloadTicketsBeforeEvent() {
+
+	}
+
+	//CONSTRUCTOR
+	Participant() {
+		setName("John Doe");
+		setAge(23);
+		setSeat(1);
+	}
+	Participant(std::string name, int age, int seat) {
+		setName(name);
+		setAge(age);
+		setSeat(seat);
+	}
+
+	//DESTRUCTOR
+	~Participant() {
+
 	}
 };
 
@@ -305,16 +321,133 @@ private:
 	ParticipantType type = ParticipantType::Standard;
 
 public:
+	//STATIC ATTRIBUTES
+	static const int MIN_NAME_LENGTH = 3;
+
+	//SETTERS
 	void setNameOfTheEvent(std::string newName) {
+		if (newName.length() < MyTickets::MIN_NAME_LENGTH) {
+			throw std::exception("Name of the event is too short");
+		}
 		this->nameOfTheEvent = newName;
 	}
+	void setSeat(int newSeat) {
+		if (newSeat <= 0) {
+			throw std::exception("Invalid size number!");
+		}
+		this->selectedSeat = newSeat;
+	}
+	void setPrice(int newPrice) {
+		if (newPrice <= 0) {
+			throw std::exception("Invalid price!");
+		}
+		this->price = newPrice;
+	}
+	void setTicketID() {
+		delete[] this->ticketID;
 
-	void setEventHasPassed() {
+		std::random_device rd;
+		std::mt19937 mt(rd());
+
+		int min = 10000;
+		int max = 100000000;
+
+		std::uniform_int_distribution<int> dist(min, max);
+
+		int randomNumber = dist(mt);
+		//std::cout << randomNumber << std::endl;
+		int copy = randomNumber;
+		int count = 0;
+		while (copy != 0) {
+			count++;
+			copy = copy / 10;
+		}
+
+		int* newTicketID = new int[count + 1];
+		for (int i = 0; i < count; i++) {
+			newTicketID[i] = randomNumber % 10;
+			randomNumber = randomNumber / 10;
+		}
+
+		this->ticketID = newTicketID;
+	}
+	void setEventHasPassed(Event event) {
+		//VALIDATION!!
+		auto currentTime = std::chrono::system_clock::now();
+
+		std::time_t time = std::chrono::system_clock::to_time_t(currentTime);
+		std::tm* timeInfo = std::localtime(&time);
+
+		int currentDay = timeInfo->tm_mday;
+		int currentMonth = timeInfo->tm_mon + 1;
+		int currentYear = timeInfo->tm_year + 1900;
+
+		if (event.getYear() < currentYear) {
+			throw std::exception("Event has already passed!");
+		}
+		if (int(event.getMonth()) < currentMonth && event.getYear() == currentYear) {
+			throw std::exception("Event has already passed!");
+		}
+		if (event.getDay() < currentDay && int(event.getMonth()) == currentMonth && event.getYear() == currentYear) {
+			throw std::exception("Event has already passed!");
+		}
 		this->eventHasPassed = true;
 	}
-
-	void setEventHasNotPassed() {
-		this->eventHasPassed = false;
+	void setTypeOfParticipant(ParticipantType newType) {
+		//do i need validation?
+		this->type = newType;
 	}
 
+	//GETTERS
+	std::string getNameOfTheEvent() {
+		return this->nameOfTheEvent;
+	}
+	int getSeat() {
+		return this->selectedSeat;
+	}
+	int getPrice() {
+		return this->price;
+	}
+	int* getTicketID() {
+		int* copy = new int[sizeof(this->ticketID) / sizeof(this->ticketID[0])];
+		for (int i = 0; i < sizeof(this->ticketID) / sizeof(this->ticketID[0]); i++) {
+			copy[i] = this->ticketID[i];
+		}
+		return copy;
+	}
+	bool getEventHasPassed() {
+		return this->eventHasPassed;
+	}
+	ParticipantType getTypeOfParticipant() {
+		return this->type;
+	}
+
+	//OTHER METHODS
+	//a method that can generate me a pdf of my ticket and send it via email
+	static void viewAllMyTickets() {
+
+	}
+	void generateTxtFileWithTicket() {
+
+	}
+	void generateMyTicket() {
+
+	}
+	void sendTicketViaEmail() {
+
+	}
+	
+	//CONSTRUCTORS
+	MyTickets() {
+		this->nameOfTheEvent = "No Event";
+		this->price = 1;
+		this->ticketID = nullptr;
+		this->eventHasPassed = false;
+		this->type = ParticipantType::Standard;
+	}
+
+	//DESTRUCTOR
+	~MyTickets() {
+		delete[] this->ticketID;
+	}
 };

@@ -11,3 +11,24 @@
 	int noOfColumns = 0;
 	int price = 0;
 	PriceDiscounts discount = PriceDiscounts::Standard;
+
+
+	std::string nameOfTheEvent = "NaN";
+	int selectedSeat = 0;
+	int price = 0;
+	int* ticketID = nullptr;
+	bool eventHasPassed = false;
+	ParticipantTypthis-e type = ParticipantType::Standard;
+
+
+//PDF_TICKET
+Ticket-ID:
+Event Name: 
+Name Of person that made the purchase:
+Seat Nr:
+Date of Event:
+	Year:
+	Month:
+	Day:
+Price:
+Concession:
