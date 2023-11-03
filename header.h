@@ -161,8 +161,22 @@ public:
 	int getYear() {
 		return this->year;
 	}
-	Months getMonth() {
-		return this->month;
+	std::string getMonth() {
+		switch (this->month) {
+		case Months::January: return "January";
+		case Months::February: return "February";
+		case Months::March: return "March";
+		case Months::April: return "April";
+		case Months::May: return "May";
+		case Months::June: return "June";
+		case Months::July: return "July";
+		case Months::August: return "August";
+		case Months::September: return "September";
+		case Months::October: return "October";
+		case Months::November: return "November";
+		case Months::December: return "December";
+		default: return "Invalid Month";
+		}
 	}
 	int getDay() {
 		return this->day;
@@ -204,6 +218,28 @@ public:
 		}
 	}
 	void searchAnEventAndDisplayOnConsole() {
+
+	}
+	void generateTxtFileWithTicket(Participant participant) {
+		std::ofstream writeFile("pdfTicket.txt");
+		std::string word;
+
+		writeFile << "Event-Ticket" << std::endl;
+		writeFile << "Please print and show this ticket at the entrance to the venue" << std::endl;
+		writeFile << "Event Name: " << this->getName() << std::endl;
+		writeFile << "Name of person that made the purchase: " << participant.getName() << std::endl;
+		writeFile << "Seat Nr: " << participant.getSeat() << std::endl;
+		writeFile << "Date of Event: " << std::endl;
+		writeFile << "\tYear: " << this->getYear() << std::endl;
+		writeFile << "\tMonth: " << this->getMonth() << std::endl;
+		writeFile << "\Day: " << this->getDay() << std::endl;
+
+
+	}
+	void generateMyTicket() {
+
+	}
+	void sendTicketViaEmail() {
 
 	}
 
@@ -427,15 +463,7 @@ public:
 	static void viewAllMyTickets() {
 
 	}
-	void generateTxtFileWithTicket() {
 
-	}
-	void generateMyTicket() {
-
-	}
-	void sendTicketViaEmail() {
-
-	}
 	
 	//CONSTRUCTORS
 	MyTickets() {

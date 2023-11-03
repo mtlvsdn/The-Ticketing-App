@@ -32,3 +32,8 @@ Date of Event:
 	Day:
 Price:
 Concession:
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!
+Muta PriceDiscounts discount = PriceDiscounts::Standard;
+de la Event la Participant
