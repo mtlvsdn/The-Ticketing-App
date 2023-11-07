@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,13 +134,11 @@
     <ClInclude Include="header.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="concertEvents.txt" />
-    <Text Include="gbin.txt" />
+    <Text Include="deleted_methods.txt" />
     <Text Include="matchEvents.txt" />
     <Text Include="movieEvents.txt" />
-    <Text Include="musicalEvents.txt" />
+    <Text Include="theaterEvents.txt" />
     <Text Include="myTickets.txt" />
-    <Text Include="pdfTicket.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

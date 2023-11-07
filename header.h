@@ -1,10 +1,17 @@
 #pragma once
+#include <iostream>
+#include <conio.h>
+#include <fstream>
+#include <string>
+#include <random>
+#include <chrono>
+#include <ctime>
 
-enum class EventType {Movie, Theater, Concert, Match};
+enum class EventType {Movie, Theater, Match};
 enum class ParticipantType {Standard, Child, Teen, Retired};
 enum class PriceDiscounts {Standard = 0, Child = 50, Teen = 30, Retired = 40};
-enum class Months {January = 1, February, March, April, May, June, July,
-					August, September, October, November, December};
+//enum class Months {January = 1, February, March, April, May, June, July,
+	//				August, September, October, November, December};
 
 class Event {
 private:
@@ -13,16 +20,15 @@ private:
 	std::string name = "NaN";
 	std::string city = "NaN";
 	std::string venue = "NaN";
-	int day = 1;
-	Months month = Months::January;
-	int year = 2011;
+	std::string date = "20/01/2011";
 	std::string time = "00:00";
-	char* occupiedSeatsChars = nullptr; // un vector uunidimensional pt toate loc din sala
-	int noOfRows = 0;
-	int noOfColumns = 0;
+	char* category = nullptr;
+	int lengthOfCategory = 0;
+	char* occupiedSeatsCategory1 = nullptr; // un vector uunidimensional pt toate loc din cat 1
+	char* occupiedSeatsCategory2 = nullptr; // un vector uunidimensional pt toate loc din cat 2
+	int noOfRows = 20;
+	int noOfColumns = 20;
 	int price = 0;
-	PriceDiscounts discount = PriceDiscounts::Standard;
-	bool isConcessioned = false;
 
 public:
 	//STATIC ATTRIBUTES
@@ -34,6 +40,7 @@ public:
 	static const int MAX_ROWS = 100;
 	static const int MIN_COLUMNS = 5;
 	static const int MAX_COLUMNS = 50;
+	static const int DATE_SIZE = 10;
 
 	//SETTERS
 	void setEventType(EventType type) {
@@ -56,36 +63,10 @@ public:
 			throw std::exception("The name of the venue is too short!");
 		}
 	}
-	void setYear(int newYear) {
-		if (newYear < 2010 || newYear > 2030) {
-			throw std::exception("Invalid date!");
+	void setDate(std::string newDate) {
+		if (newDate.size() != Event::DATE_SIZE) {
+			throw std::exception("Date format is invalid!");
 		}
-		this->year = newYear;
-	}
-	void setMonth(Months newMonth) {
-		this->month = newMonth;
-	}
-	void setDay(int newDay) {
-		if (newDay < 1 || newDay > 31) {
-			throw std::exception("Invalid date!");
-		}
-		if (this->month == Months::February) {
-			if (newDay == 30 || newDay == 31) {
-				throw std::exception("Invalid date!");
-			}
-			if (this->year % 4 != 0) {
-				if (newDay == 29) {
-					throw std::exception("Invalid date!");
-				}
-			}
-		}
-		if (this->month == Months::April || this->month == Months::June
-			|| this->month == Months::September || this->month == Months::November) {
-			if (newDay == 31) {
-				throw std::exception("Invalid date!");
-			}
-		}
-		this->day = newDay;
 	}
 	void setTime(std::string newTime) {
 		if (newTime.length() != 5) {
@@ -126,23 +107,23 @@ public:
 		}
 		
 	}
-	void setOccuppiedSeats(int newSeat) {
-		if (newSeat > this->noOfColumns * this->noOfRows || newSeat <= 0) {
+	void setOccuppiedSeatsCategory1(int newSeat) {
+		if (newSeat > this->noOfColumns * this->noOfRows || newSeat <= 0 || this->occupiedSeatsCategory1[newSeat] == 'O') {
 			throw std::exception("Number of seat is invalid!");
 		}
-		this->occupiedSeatsChars[newSeat] = 'O';
+		this->occupiedSeatsCategory1[newSeat] = 'O';
+	}
+	void setOccuppiedSeatsCategory2(int newSeat) {
+		if (newSeat > this->noOfColumns * this->noOfRows || newSeat <= 0 || this->occupiedSeatsCategory2[newSeat] == 'O') {
+			throw std::exception("Number of seat is invalid!");
+		}
+		this->occupiedSeatsCategory2[newSeat] = 'O';
 	}
 	void setPrice(int newPrice) {
 		if (newPrice <= 0) {
 			throw std::exception("Invalid price!");
 		}
 		this->price = newPrice;
-	}
-	void setDiscount(PriceDiscounts newDiscount) {
-		this->discount = newDiscount;
-	}
-	void IsConcessioned() {
-		this->isConcessioned = true;
 	}
 
 	//GETTERS
@@ -158,28 +139,8 @@ public:
 	std::string getVenue() {
 		return this->venue;
 	}
-	int getYear() {
-		return this->year;
-	}
-	std::string getMonth() {
-		switch (this->month) {
-		case Months::January: return "January";
-		case Months::February: return "February";
-		case Months::March: return "March";
-		case Months::April: return "April";
-		case Months::May: return "May";
-		case Months::June: return "June";
-		case Months::July: return "July";
-		case Months::August: return "August";
-		case Months::September: return "September";
-		case Months::October: return "October";
-		case Months::November: return "November";
-		case Months::December: return "December";
-		default: return "Invalid Month";
-		}
-	}
-	int getDay() {
-		return this->day;
+	std::string getDate() {
+		return this->date;
 	}
 	std::string getTime() {
 		return this->time;
@@ -190,10 +151,18 @@ public:
 	int getNoOfColumns() {
 		return this->noOfColumns;
 	}
-	char* getOccupiedSeats() {
+	char* getOccupiedCategory1() {
 		char* newArray = new char[this->noOfRows * this->noOfColumns];
-		for (int i = 1; i <= this->noOfRows * this->noOfColumns; i++) {
-			newArray[i] = this->occupiedSeatsChars[i];
+		for (int i = 0; i < this->noOfRows * this->noOfColumns; i++) {
+			newArray[i] = this->occupiedSeatsCategory1[i];
+		}
+
+		return newArray;
+	}
+	char* getOccupiedCategory2() {
+		char* newArray = new char[this->noOfRows * this->noOfColumns];
+		for (int i = 0; i < this->noOfRows * this->noOfColumns; i++) {
+			newArray[i] = this->occupiedSeatsCategory2[i];
 		}
 
 		return newArray;
@@ -201,47 +170,179 @@ public:
 	int getPrice() {
 		return this->price;
 	}
-	PriceDiscounts getDiscount() {
-		return this->discount;
-	}
-	bool hasConcession() {
-		return this->isConcessioned;
-	}
 
 	//OTHER METHODS
-	void initialiseOccuppiedSeats(int noRows, int noColumns) {
-		delete[] this->occupiedSeatsChars;
-		this->occupiedSeatsChars = new char[noRows * noColumns];
+	void initialiseOccuppiedSeatsCategory1(int noRows, int noColumns) {
+		delete[] this->occupiedSeatsCategory1;
+		this->occupiedSeatsCategory1 = new char[noRows * noColumns];
 
-		for (int i = 1; i <= noRows * noColumns; i++) {
-			this->occupiedSeatsChars[i] = 'F';
+		for (int i = 0; i < noRows * noColumns; i++) {
+			this->occupiedSeatsCategory1[i] = 'F';
 		}
 	}
-	void searchAnEventAndDisplayOnConsole() {
+	void initialiseOccuppiedSeatsCategory2(int noRows, int noColumns) {
+		delete[] this->occupiedSeatsCategory2;
+		this->occupiedSeatsCategory2 = new char[noRows * noColumns];
 
+		for (int i = 0; i < noRows * noColumns; i++) {
+			this->occupiedSeatsCategory2[i] = 'F';
+		}
 	}
-	void generateTxtFileWithTicket(Participant participant) {
-		std::ofstream writeFile("pdfTicket.txt");
-		std::string word;
+	void chooseEvent() {
+		int selection, eventSelection;
+		std::string line;
+		bool ok = false;
+		int counter = 1;
+		std::ifstream eventFile("movieEvents.txt");
+		std::cout << "Choose your event type: ";
+		std::cout << std::endl << "1. Movie";
+		std::cout << std::endl << "2. Theater";
+		std::cout << std::endl << "3. Match";
 
-		writeFile << "Event-Ticket" << std::endl;
-		writeFile << "Please print and show this ticket at the entrance to the venue" << std::endl;
-		writeFile << "Event Name: " << this->getName() << std::endl;
-		writeFile << "Name of person that made the purchase: " << participant.getName() << std::endl;
-		writeFile << "Seat Nr: " << participant.getSeat() << std::endl;
-		writeFile << "Date of Event: " << std::endl;
-		writeFile << "\tYear: " << this->getYear() << std::endl;
-		writeFile << "\tMonth: " << this->getMonth() << std::endl;
-		writeFile << "\Day: " << this->getDay() << std::endl;
+		while (!ok) {
+			std::cout << std::endl << "-> ";
+			std::cin >> selection;
+			switch (selection) {
+			case 1: ok = true; break;
+			case 2: ok = true; break;
+			case 3: ok = true; break;
+			default: std::cout << std::endl << "Invalid input! Try again: "; std::cin >> selection;
+			}
+		}
+		if (selection == 2) {
+			system("cls");
+			std::cout << "List of current Theter Events: ";
+			eventFile.close();
+			eventFile.open("theaterEvents.txt");
+		}
+		else if (selection == 3) {
+			system("cls");
+			std::cout << "List of current Match Events: ";
+			eventFile.close();
+			eventFile.open("matchEvents.txt");
+		}
+		else {
+			system("cls");
+			std::cout << "List of current Movie Events";
+		}
 
 
+		while (std::getline(eventFile, line)) {
+			std::cout << std::endl << counter << ". " << line;
+			counter++;
+		}
+		
+		std::cout << std::endl << "Choose the event you wish to attend: ";
+		std::cin >> eventSelection;
+		while (eventSelection > counter) {
+			std::cout << std::endl << "Invalid selection. Try again!";
+			std::cin >> eventSelection;
+		}
+
+		//reset parameters
+		std::string newName;
+		std::string newCity;
+		std::string newVenue;
+		std::string newDate;
+		std::string newTime;
+		counter = 1;
+		//eventFile.seekg(0, std::ios::beg);
+		eventFile.close();
+		if (selection == 1) {
+			system("cls");
+			eventFile.open("movieEvents.txt");
+		}
+		else if (selection == 2) {
+			system("cls");
+			eventFile.open("theaterEvents.txt");
+		}
+		else if (selection == 3) {
+			system("cls");
+			eventFile.open("matchEvents.txt");
+		}
+		else {
+			system("cls");
+			std::cout << "List of current Movie Events";
+		}
+
+		if (eventFile.is_open()) {
+			while (std::getline(eventFile, newName, ',')) {
+				std::getline(eventFile, newCity, ',');
+				std::getline(eventFile, newVenue, ',');
+				std::getline(eventFile, newDate, ',');
+				std::getline(eventFile, newTime, ',');
+				if (counter == eventSelection) {
+					this->name = newName;
+					this->city = newCity;
+					this->venue = newVenue;
+					this->date = newDate;
+					this->time = newTime;
+				}
+				counter++;
+			}
+		}
+		else {
+			std::cout << "File cannot be opened!";
+		}
 	}
-	void generateMyTicket() {
+	void selectBetweenTheTwoCategories() {
+		int selection, seatSelection;
+		int counter = 1;
+		std::cout << "Book tickets: ";
+		std::cout << std::endl << "The chosen event: " << this->name << " " << this->city << " ";
+		std::cout << this->venue << " " << this->date << " " << this->time;
+		std::cout << std::endl << std::endl <<"Seats at the venue: " << std::endl;
 
-	}
-	void sendTicketViaEmail() {
+		//Category 1
+		char* newArray1 = this->getOccupiedCategory1();
+		std::cout << std::endl << "Category 1" << std::endl;
+		for (int i = 1; i <= this->noOfRows; i++) {
+			for (int j = 1; j <= this->noOfColumns; j++) {
+				std::cout << counter << "-" << newArray1[i] << " ";
+				counter++;
+			}
+			std::cout << std::endl;
+		}
+		std::cout << std::endl << std::endl;
+		//Category 2
+		char* newArray2 = this->getOccupiedCategory2();
+		std::cout << std::endl << "Category 2" << std::endl;
+		for (int i = 1; i <= this->noOfRows; i++) {
+			for (int j = 1; j <= this->noOfColumns; j++) {
+				std::cout << counter << "-" << newArray2[i] << " ";
+				counter++;
+			}
+			std::cout << std::endl;
+		}
 
+		std::cout << std::endl << std::endl << "In which category would you like to book your ticket?: ";
+		std::cin >> selection;
+		while (!(selection == 1 || selection == 2)) {
+			std::cout << "Wrong selection! Try again: ";
+			std::cin >> selection;
+		}
+
+		if (selection == 1) {
+			std::cout << std::endl << "Select a seat: ";
+			std::cin >> seatSelection;
+			while (seatSelection < 1 || seatSelection > this->noOfRows * this->noOfColumns) {
+				std::cout << "Invalid seat number! Try again: ";
+				std::cin >> seatSelection;
+			}
+			this->setOccuppiedSeatsCategory1(seatSelection);
+		}
+		else {
+			std::cout << std::endl << "Select a seat: ";
+			std::cin >> seatSelection;
+			while (seatSelection < 1 || seatSelection > this->noOfRows * this->noOfColumns) {
+				std::cout << "Invalid seat number! Try again: ";
+				std::cin >> seatSelection;
+			}
+			this->setOccuppiedSeatsCategory2(seatSelection);
+		}
 	}
+
+
 
 	//CONSTRUCTORS
 	Event() {
@@ -249,33 +350,29 @@ public:
 		this->setName("Home Alone");
 		this->setCity("Bucharest");
 		this->setVenue("Afi Palace Cotroceni");
-		this->setYear(2011);
-		this->setMonth(Months::January);
-		this->setDay(1);
+		this->setDate("20/01/2011");
 		this->setTime("22:00");
 		this->setNoOfRows(4);
 		this->setNoOfColumns(5);
 		this->setPrice(20);
-		this->setDiscount(PriceDiscounts::Standard);
 	}
 	Event (std::string name, std::string city) {
 		setName(name);
 		setCity(city);
 	}
-	Event (EventType type, std::string name, std::string city,
-		int year, Months month, int day) {
-		setEventType(type);
+	Event (std::string name, std::string city, std::string venue,
+		std::string date, std::string time) {
 		setName(name);
 		setCity(city);
 		setVenue(venue);
-		setYear(year);
-		setMonth(month);
-		setDay(day);
+		setDate(date);
+		setTime(time);
 	}
 	
 	//DESTRUCTOR
 	~Event() {
-		delete[] this->occupiedSeatsChars;
+		delete[] this->occupiedSeatsCategory1;
+		delete[] this->occupiedSeatsCategory2;
 	}
 };
 
@@ -284,6 +381,7 @@ private:
 	std::string name = "NaN";;
 	int age = 0;
 	int selectedSeat = 0;
+	PriceDiscounts discount = PriceDiscounts::Standard;
 
 public:
 
@@ -309,6 +407,9 @@ public:
 		}
 		this->selectedSeat = newSeat;
 	}
+	void setDiscount(PriceDiscounts newDiscount) {
+		this->discount = newDiscount;
+	}
 
 	//GETTERS
 	std::string getName() {
@@ -319,6 +420,14 @@ public:
 	}
 	int getSeat() {
 		return this->selectedSeat;
+	}
+	std::string getDiscount() {
+		switch (this->discount) {
+		case PriceDiscounts::Standard: return "Standard";
+		case PriceDiscounts::Child: return "Child";
+		case PriceDiscounts::Teen: return "Teen";
+		case PriceDiscounts::Retired: return "Retired";
+		}
 	}
 
 	//OTHER METHODS
@@ -353,7 +462,6 @@ private:
 	int selectedSeat = 0;
 	int price = 0;
 	int* ticketID = nullptr;
-	bool eventHasPassed = false;
 	ParticipantType type = ParticipantType::Standard;
 
 public:
@@ -407,28 +515,6 @@ public:
 
 		this->ticketID = newTicketID;
 	}
-	void setEventHasPassed(Event event) {
-		//VALIDATION!!
-		auto currentTime = std::chrono::system_clock::now();
-
-		std::time_t time = std::chrono::system_clock::to_time_t(currentTime);
-		std::tm* timeInfo = std::localtime(&time);
-
-		int currentDay = timeInfo->tm_mday;
-		int currentMonth = timeInfo->tm_mon + 1;
-		int currentYear = timeInfo->tm_year + 1900;
-
-		if (event.getYear() < currentYear) {
-			throw std::exception("Event has already passed!");
-		}
-		if (int(event.getMonth()) < currentMonth && event.getYear() == currentYear) {
-			throw std::exception("Event has already passed!");
-		}
-		if (event.getDay() < currentDay && int(event.getMonth()) == currentMonth && event.getYear() == currentYear) {
-			throw std::exception("Event has already passed!");
-		}
-		this->eventHasPassed = true;
-	}
 	void setTypeOfParticipant(ParticipantType newType) {
 		//do i need validation?
 		this->type = newType;
@@ -446,31 +532,27 @@ public:
 	}
 	int* getTicketID() {
 		int* copy = new int[sizeof(this->ticketID) / sizeof(this->ticketID[0])];
-		for (int i = 0; i < sizeof(this->ticketID) / sizeof(this->ticketID[0]); i++) {
+		int i = 0;
+		while (this->ticketID[i] != '\0') {
 			copy[i] = this->ticketID[i];
+			i++;
 		}
 		return copy;
-	}
-	bool getEventHasPassed() {
-		return this->eventHasPassed;
 	}
 	ParticipantType getTypeOfParticipant() {
 		return this->type;
 	}
 
 	//OTHER METHODS
-	//a method that can generate me a pdf of my ticket and send it via email
 	static void viewAllMyTickets() {
 
 	}
 
-	
 	//CONSTRUCTORS
 	MyTickets() {
 		this->nameOfTheEvent = "No Event";
 		this->price = 1;
 		this->ticketID = nullptr;
-		this->eventHasPassed = false;
 		this->type = ParticipantType::Standard;
 	}
 

@@ -26,11 +26,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="movieEvents.txt" />
-    <Text Include="musicalEvents.txt" />
-    <Text Include="concertEvents.txt" />
+    <Text Include="theaterEvents.txt" />
     <Text Include="matchEvents.txt" />
-    <Text Include="gbin.txt" />
     <Text Include="myTickets.txt" />
-    <Text Include="pdfTicket.txt" />
+    <Text Include="deleted_methods.txt" />
   </ItemGroup>
 </Project>

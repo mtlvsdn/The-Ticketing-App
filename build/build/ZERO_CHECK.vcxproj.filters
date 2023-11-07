@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\MATEI\ASE\ANUL 2\POO\The Ticketing App\build\build\CMakeFiles\d52880c6d3d52a902d3582d6b3b492f5\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{F27E7B21-54CB-3A96-8B62-ADC26969C184}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

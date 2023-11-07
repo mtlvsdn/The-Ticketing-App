@@ -1,0 +1,89 @@
+	//void generateTxtFileWithTicket(Participant participant) {
+		std::ofstream writeFile("pdfTicket.txt");
+		std::string word;
+
+		writeFile << "Event-Ticket" << std::endl;
+		writeFile << "Please print and show this ticket at the entrance to the venue" << std::endl;
+		writeFile << "Event Name: " << this->getName() << std::endl;
+		writeFile << "Name of person that made the purchase: " << participant.getName() << std::endl;
+		writeFile << "Seat Nr: " << participant.getSeat() << std::endl;
+		writeFile << "Date of Event: " << std::endl;
+		writeFile << "\tYear: " << this->getYear() << std::endl;
+		writeFile << "\tMonth: " << this->getMonth() << std::endl;
+		writeFile << "\tDay: " << this->getDay() << std::endl;
+		writeFile << "Price: " << this->getPrice() << std::endl;
+		writeFile << "Concession: " << participant.getDiscount();
+	}
+	//void generateMyPdfTicket() {
+		std::ifstream textFile("pdfTicket.txt");
+		const char* pdfFile = "output.pdf";
+
+		HPDF_Doc pdf = HPDF_New(NULL, NULL);
+		HPDF_Page page = HPDF_AddPage(pdf);
+		HPDF_Font font = HPDF_GetFont(pdf, "Calibri", NULL);
+		HPDF_Page_SetFontAndSize(page, font, 12);
+
+		std::string line;
+		while (std::getline(textFile, line)) {
+			HPDF_Page_ShowText(page, line.c_str());
+			//HPDF_Page_ShowTextNextLine(page);
+		}
+
+		HPDF_SaveToFile(pdf, pdfFile);
+		HPDF_Free(pdf);
+		textFile.close();
+
+	}
+	//void sendTicketViaEmail() {
+
+	}
+
+	void searchAnEventAndDisplayOnConsole() {
+		system("cls");
+		std::string input;
+		std::string newName;
+		std::string newCity;
+		std::string newVenue;
+		std::string newDate;
+		std::string newTime;
+		int counter = 0;
+		std::ifstream eventFile("movieEvents.txt");
+		std::ofstream otherFile("otherFile.txt");
+		std::cout << "Search by Name of the event: ";
+		std::cin >> input;
+		
+		switch (this->getType()) {
+		case EventType::Movie:
+			break;
+		case EventType::Theater:
+			eventFile.close();
+			eventFile.open("musicalEvents.txt");
+			break;
+		case EventType::Match:
+			eventFile.close();
+			eventFile.open("matchEvents.txt");
+			break;
+		}
+
+		while (std::getline(eventFile, newName, ',')) {
+			getline(eventFile, newCity, ',');
+			getline(eventFile, newVenue, ',');
+			getline(eventFile, newDate, ',');
+			getline(eventFile, newTime, ',');
+
+			/*std::cout << std::endl << counter + ".) " << newName << " " << newCity << " " << newVenue;
+			std::cout << " " << newDate << " " << newTime;*/
+
+			if (input == newName) {
+				std::cout << std::endl << counter + ".) " << newName << " " << newCity << " " << newVenue;
+				std::cout << " " << newDate << " " << newTime;
+
+				otherFile << std::endl << counter + ".) " << newName << " " << newCity << " " << newVenue;
+				otherFile << " " << newDate << " " << newTime;
+				counter++;
+			}
+		}
+		eventFile.close();
+		otherFile.close();
+		_getch();
+	}
